@@ -1,0 +1,13 @@
+.cache/
+
+app/node_modules
+app/.env
+
+contract/
+contract/metaplex
+contract/.config
+contract/.cache
+
+assets
+
+config.json
