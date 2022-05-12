@@ -4,7 +4,7 @@
 
 app/node_modules
 app/.env
-app/deploypackage.json
+app/testpackage.json
 
 contract/
 contract/metaplex

@@ -483,15 +483,22 @@ const CandyMachine = ({ walletAddress }) => {
 
     candyMachine && (
       <div className="machine-container">
-        <p className="mint-text">
-          Remaining <br/> {`${candyMachine.state.itemsAvailable - candyMachine.state.itemsRedeemed}`} 
-       </p>
-
-          { (candyMachine.state.goLiveDate < (new Date().getTime() * 1000))? (
-            <p>LIVE</p>
-          ) : (
-            <p>NOT LIVE</p>
-          ) }
+        <div className="count-container">
+          <p className="mint-text">
+            {`${candyMachine.state.itemsAvailable - candyMachine.state.itemsRedeemed}`}
+          </p>
+          <p>
+            remaining
+          </p>
+          <p className="padding"></p>
+          {
+            (candyMachine.state.itemsAvailable === candyMachine.state.itemsRedeemed)? (
+              <p className="mint-text">SOLD OUT</p>
+            ) : (
+              <p className="mint-text">LIVE</p>
+            )
+          }
+        </div>
 
         { /* Show mint button if no mint yet underway or attempted */}
         { !isLoading && (mintSuccess === null) && renderMintButton() }

@@ -27,12 +27,6 @@
   padding: 30px;
 }
 
-.header {
-  margin: 0;
-  font-size: 50px;
-  font-weight: bold;
-}
-
 .sub-text {
   font-size: 25px;
 }
@@ -103,6 +97,63 @@
 
 .connected-container button {
   height: 50px;
+}
+
+@font-face {
+  font-family: press_start;
+  src: url("./assets/PressStart2P-Regular.ttf");
+}
+
+.header-titles {
+  padding-top: 50px;
+  color: white;
+  text-align: center;
+}
+
+.header-text {
+  font-family: press_start;
+  font-size: 40px;
+}
+
+.header-sub-text {
+  font-size: 30px;
+  padding: 20px;
+}
+
+.wallet-info {
+  color: white;
+  text-align: center;
+  width: 160px;
+  font-size: 18px;
+  font-weight: bold;
+  position: relative;
+  border: 0;
+  border-radius: 5px;
+}
+
+.wallet-address {
+  background-color: #c267ee;
+}
+
+.wallet-disconnect {
+  animation: gradient-animation 4s ease infinite;
+  background-image: linear-gradient(to right, #c267ee 0%, #51daec 100%);
+  cursor: pointer;
+}
+
+.wallet-connect {
+  animation: gradient-animation 4s ease infinite;
+  background-image: linear-gradient(to right, #c267ee 0%, #51daec 100%);
+  cursor: pointer;
+}
+
+.wallet-info-container {
+  position: absolute;
+  top: 65px;
+  right: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 /* KeyFrames */

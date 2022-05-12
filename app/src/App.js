@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import CandyMachine from './components/CandyMachine';
 import AuthorInfo from './components/AuthorInfo';
-import Header from './components/Header';
 import './App.css';
 
-
-
+const network = "devnet";
 
 const App = () => {
 
@@ -42,10 +40,35 @@ const App = () => {
   };
 
   const renderNotConnectedContainer = () => (
-    <button className="cta-button wallet-connect wallet-info" onClick={connectWallet}>
+    <button className="cta-button wallet-connect" onClick={connectWallet}>
       Connect Phantom Wallet
     </button>
   );
+
+  const renderConnectedInfo = () => {
+    return (
+        <button className="wallet-info wallet-address">
+            {walletAddress.slice(0,5) + '...' + walletAddress.slice(-5)}
+        </button>
+    )
+};
+
+const renderNotConnectedInfo = () => {
+    return (
+        <button className="wallet-info wallet-address">
+            Not Connected
+        </button>
+    )
+};
+
+const renderWrongNetworkInfo = () => {
+    return (
+        <button className="wallet-info wallet-address">
+            Wrong Network!
+            Choose devnet and reconnect
+        </button>
+    )
+};
 
   useEffect(() => {
     const onLoad = async () => {
@@ -59,7 +82,23 @@ const App = () => {
     <div className="App">
       <div className="container">
         <div className="header-container">
-          <Header walletAddress={window.solana} />
+          <header>
+            <div className="header-titles">
+              <h1 className="header-text">Evangelion Pixels</h1>
+              <p className="header-sub-text">A pixel art collection in homage to the seminal anime</p>
+            </div>
+            <div className="wallet-info-container">
+              {/* Wallet connected to testnet, display wallet address and disconnect button */}
+              { (walletAddress && (network === 'devnet') 
+                  && renderConnectedInfo()) }
+              {/* Wallet not connected, display not connected and connect button */}
+              { (!walletAddress)
+                  && renderNotConnectedInfo() }
+              {/* Wallet connected to wrong network, display wrong network info and refresh button */}
+              { (walletAddress && (network !== 'devnet') 
+                  && renderWrongNetworkInfo() )}
+            </div>
+          </header>
           { !walletAddress && renderNotConnectedContainer() }
         </div>
           { walletAddress && <CandyMachine walletAddress={window.solana} /> }

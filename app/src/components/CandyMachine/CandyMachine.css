@@ -4,10 +4,22 @@
   align-items: center;
 }
 
+.count-container {
+  display:flex;
+  flex-direction: row;
+  align-items: bottom;
+  gap: 10px;
+}
+
 .mint-text {
   font-size: 32px;
   font-weight: bold;
   margin: 5px;
+}
+
+.padding {
+  padding-left: 50px;
+  padding-bottom: 50px;
 }
 
 .dropdate-text {
@@ -51,7 +63,7 @@
 
 .nft-item img {
   width: 100%;
-  height: 200px;
+  height: 700px;
   border-radius: 10px;
   object-fit: cover;
 }
@@ -64,4 +76,6 @@
 .sub-header-text {
   font-family: press_start;
   font-size: 32px;
+  padding-top: 70px;
+  padding-bottom: 20px;
 }
