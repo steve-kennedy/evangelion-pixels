@@ -64,6 +64,12 @@
   animation: gradient-animation 4s ease infinite;
 }
 
+.mint-button:disabled {
+  background:  #fff;
+  color: #ccc;
+  cursor: no-drop;
+}
+
 .footer-container {
   display: flex;
   justify-content: center;

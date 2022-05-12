@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import LoadingIndicator from '../../components/LoadingIndicator';
-import axios from 'axios';
 import { Connection, PublicKey } from '@solana/web3.js';
 import bs58 from 'bs58';
 import { Program, Provider, web3 } from '@project-serum/anchor';
@@ -22,7 +21,7 @@ import {
 require("dotenv").config();
 
 const {
-  metadata: { Metadata, MetadataProgram },
+  metadata: { Metadata },
 } = programs;
 const { SystemProgram } = web3;
 const opts = {
@@ -42,11 +41,10 @@ const CREATOR_ARRAY_START = 1 + 32 + 32 + 4 + MAX_NAME_LENGTH + 4 + MAX_URI_LENG
 const CandyMachine = ({ walletAddress }) => {
   // States
   const [candyMachine, setCandyMachine] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [mintSuccess, setMintSuccess] = useState(null);
-
   const [mints, setMints] = useState([]);
+  const [isMinting, setIsMinting] = useState(false);
   const [isLoadingMints, setIsLoadingMints] = useState(false);
+  const [mintSuccess, setMintSuccess] = useState(null);
 
   const getCandyMachineCreator = async (candyMachine) => {
     const candyMachineID = new PublicKey(candyMachine);
@@ -114,7 +112,7 @@ const CandyMachine = ({ walletAddress }) => {
   };
 
   const mintToken = async () => {
-    setIsLoading(true);
+    setIsMinting(true);
     const mint = web3.Keypair.generate();
 
     const userTokenAccountAddress = (
@@ -311,21 +309,21 @@ const CandyMachine = ({ walletAddress }) => {
     );
   
     try {
-      return (
-        await sendTransactions(
-          candyMachine.program.provider.connection,
-          candyMachine.program.provider.wallet,
-          [instructions, cleanupInstructions],
-          [signers, []],
-        )
-      ).txs.map(t => t.txid);
-    } catch (e) {
-      setIsLoading(false);
+      const transactions = await sendTransactions(
+        candyMachine.program.provider.connection,
+        candyMachine.program.provider.wallet,
+        [instructions, cleanupInstructions],
+        [signers, []],
+      )
+      const transaction = transactions.txs.map(t => t.txid);
+      console.log("Transaction successful:", transaction);
+      setIsMinting(false);
+      setMintSuccess(true);
+    } catch (error) {
+      setIsMinting(false);
       setMintSuccess(false);
-      console.log(e);
+      console.log(error);
     }
-    setIsLoading(false);
-    setMintSuccess(false);
     return [];
   };
 
@@ -443,7 +441,11 @@ const CandyMachine = ({ walletAddress }) => {
 
   const renderMintButton = () => {
     return (
-      <button className="cta-button mint-button" onClick={mintToken}>
+      <button 
+        className="cta-button mint-button" 
+        onClick={mintToken}
+        disabled={(candyMachine.state.itemsAvailable === candyMachine.state.itemsRedeemed)}
+      >
         Mint NFT
       </button>
     );
@@ -499,9 +501,9 @@ const CandyMachine = ({ walletAddress }) => {
         </div>
 
         { /* Show mint button if no mint yet underway or attempted */}
-        { !isLoading && (mintSuccess === null) && renderMintButton() }
+        { !isMinting && (mintSuccess === null) && renderMintButton() }
         { /* Show loading indictor once mint button pressed and hide on success/failure */}
-        { isLoading && mintSuccess === null && renderLoading() }
+        { isMinting && mintSuccess === null && renderLoading() }
         { /* Handle success */}
         { mintSuccess && renderSuccess() }
         { /* Handle failure */}
