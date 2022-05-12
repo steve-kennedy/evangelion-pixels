@@ -363,8 +363,11 @@ const CandyMachine = ({ walletAddress }) => {
 
     candyMachine && (
       <div className="machine-container">
-        <p>Drop Date: {`${candyMachine.state.goLiveDateTimeString}`}</p>
-        <p>Items Minted: {`${candyMachine.state.itemsRedeemed} / ${candyMachine.state.itemsAvailable}`}</p>
+        <p className="mint-text">
+          Minted: <br/> {`${candyMachine.state.itemsRedeemed} / ${candyMachine.state.itemsAvailable}`} 
+       </p>
+        <p className="dropdate-text">
+          Drop Date: <br /> {`${candyMachine.state.goLiveDateTimeString}`}</p>
         <button className="cta-button mint-button" onClick={null}>
           Mint NFT
         </button>

@@ -1,0 +1,20 @@
+@font-face {
+    font-family: press_start;
+    src: url("../../fonts/PressStart2P-Regular.ttf");
+}
+
+.header-titles {
+    padding-top: 20px;
+    color: white;
+    text-align: center;
+}
+
+.header-text {
+    font-family: press_start;
+    font-size: 40px;
+}
+
+.header-sub-text {
+    font-size: 30px;
+    padding: 20px;
+}

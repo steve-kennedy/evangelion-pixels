@@ -1,20 +1,23 @@
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+      animation: App-logo-spin infinite 20s linear;
+  }
+}
+
 .App {
-  height: 100vh;
+  min-height: 90vh;
   background-color: rgb(20, 20, 20);
-  overflow: scroll;
   text-align: center;
-  overflow: hidden;
 }
 
 .container {
-  height: 100%;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: 0 30px 0 30px;
   color: white;
   position: relative;
-  /* background-color: #35aee2; */
 }
 
 .authed-container {
@@ -22,10 +25,6 @@
   display: flex;
   flex-direction: column;
   padding: 30px;
-}
-
-.header-container {
-  /* background-color: #60c657; */
 }
 
 .header {
@@ -48,13 +47,14 @@
 .cta-button {
   height: 45px;
   border: 0;
-  width: auto;
+  width: 350px;
   padding-left: 40px;
   padding-right: 40px;
   border-radius: 10px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: bold;
+  color: white;
 }
 
 .connect-wallet-button {
@@ -68,18 +68,13 @@
   background: -webkit-linear-gradient(left, #4e44ce, #35aee2);
   background-size: 200% 200%;
   animation: gradient-animation 4s ease infinite;
-  margin-left: 10px;
 }
 
 .footer-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
-  width: 100%;
-  bottom: 0;
-  left: 0;
-  /* padding-bottom: 45px; */
+  padding-bottom: 30px;
 }
 
 .twitter-logo {

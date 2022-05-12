@@ -1,14 +1,27 @@
 .machine-container {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
-.gif-container {
+.mint-text {
+  font-size: 32px;
+  font-weight: bold;
+  margin: 5px;
+}
+
+.dropdate-text {
+  font-size: 24px;
+  color: green;
+  padding-bottom: 25px;
+}
+
+.nft-container {
   display: flex;
   flex-direction: column;
 }
 
-.gif-grid {
+.nft-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-gap: 1.5rem;
@@ -17,7 +30,7 @@
   padding: 20px 0 20px 0;
 }
 
-.gif-grid .gif-item {
+.nft-grid .nft-item {
   display: flex;
   flex-direction: column;
   position: relative;
@@ -25,7 +38,7 @@
   align-self: center;
 }
 
-.gif-item img {
+.nft-item img {
   width: 100%;
   height: 200px;
   border-radius: 10px;
