@@ -8,8 +8,6 @@ import { programs } from '@metaplex/js';
 import { MintLayout, TOKEN_PROGRAM_ID, Token } from '@solana/spl-token';
 import { sendTransactions } from './connection';
 import './CandyMachine.css';
-import '../Header/Header.css';
-
 
 import {
   candyMachineProgram,

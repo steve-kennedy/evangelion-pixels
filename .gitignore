@@ -5,6 +5,7 @@
 app/node_modules
 app/.env
 app/testpackage.json
+app/build
 
 contract/
 contract/metaplex
